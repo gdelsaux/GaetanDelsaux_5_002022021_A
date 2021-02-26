@@ -1,0 +1,68 @@
+html {
+    scroll-behavior: smooth;
+}
+
+#presentation {
+    background-image: url(./../images/photo-1516724562728-afc824a36e84.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+#camera--cards .card {
+    border-radius: 10px;
+    height: 400px;
+    border: solid lightgray 1px;
+}
+
+#camera--cards img {
+    border-radius: 10px;
+    border: solid lightgray 1px;
+    height: 200px;
+}
+
+#socials a {
+    display: block;
+    color: black;
+    width: 90px;
+}
+
+#socials i {
+    font-size: 40px;
+}
+
+#confirmation--box {
+    border: solid 1px lightgray;
+    border-radius: 40px;
+    height: 500px;
+}
+
+#camera--details {
+    height: 75vh;
+    margin-top: 30px;
+}
+
+#order--form input {
+    border-style: none;
+    border-bottom-style: groove;
+}
+
+input:focus {
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.item--quantity {
+    width: 40px;
+}
+
+.item--quantity::-webkit-inner-spin-button {
+    opacity: 1;
+}
+
+#item--quantity::-webkit-inner-spin-button {
+    opacity: 1;
+}

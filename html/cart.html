@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <meta name="robots" content="index, follow">
+
+    <title>Orinoco | Basket</title>
+
+    <!--Links-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./../css/all.css">
+    <link rel="stylesheet" href="./../css/style.css">
+</head>
+
+<body>
+    <!--header-->
+    <header class="bg-light">
+        <nav class="col navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand ml-lg-5" href="./../index.html">
+                Orinico
+            </a>
+            <button class="navbar-toggler mr-lg-5 text-right" type="button" data-toggle="collapse" data-target="#navbarContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarContent" class="collapse navbar-collapse mr-lg-5 d-md-flex justify-content-md-end">
+                <ul class="navbar-nav text-right">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Our products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./html/cart.html" class="nav-link">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--page core-->
+    <main>
+        <div class="container d-flex flex-row justify-content-around flex-wrap my-5">
+
+            <!--Items from the local storage-->
+            <div class="w-50 px-5">
+                <div class="card shadow mb-5">
+                    <div class="card-body">
+                        <img src="./../images/vcam_1.jpg" alt="Camera number1" class="card-img-top">
+                        <h5 id="camera--name" class="card-title mt-4">carmera name</h5>
+                        <div>
+                            <span class="card-title">Price $</span>
+                            <span id="item--price">3</span>
+                        </div>
+                        <form>
+                            <label class="mr-3" for="quantity">
+                                Quantity
+                            </label>
+                            <input id="item--quantity" type="number" style="width: 40px; border: solid 1px d9d6d0;">
+                            <button class="delete--item rounded-pill">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
+                        <p>sub-total</p>
+                        <span>$</span><span id="subtotal"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!--Order form-->
+            <div class="w-50">
+                <div class="flex flex-col rounded m-4 p-4 pl-5 shadow-lg align-content-center">
+                    <p class="py-2">
+                        Your details
+                    </p>
+                    <form id="order--form">
+                        <input class="w-75 px-2 p-2 my-2" type="text" name="input--field" placeholder="First Name" id="firstName"
+                            required />
+                        <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="Last Name" id="lastName"
+                            required />
+                        <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="Address" id="address" required />
+                        <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="City" id="city" required />
+                        <input class="w-75 px-2 p-1 my-2" type="email" name="input--field" placeholder="E-Mail" id="email" pattern=".+@.+\..+" required />
+                    </form>
+                    <button id="submit--form" class="w-75 px-2 p-1 mt-2 rounded-pill" type="submit">
+                        Order
+                    </button>
+                    <p class="mt-4">
+                        Basket Total:
+                    </p>
+                    <span>$</span><span id="final--amount"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--footer-->
+    <div class="bg-light">
+        <div class="container">
+            <div class="row py-3">
+                <ul class="col list-inline text-center align-middle">
+                    <li class="list-inline-item"><a href="#">About Us</a></li>
+                    <li class="list-inline-item">&middot;</li>
+                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                    <li class="list-inline-item">&middot;</li>
+                    <li class="list-inline-item"><a href="#">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div id="socials" class="row">
+                <ul class="col list-inline text-center align-middle">
+                    <li class="list-inline-item pz-5">
+                        <a href="https://twitter.com/">
+                            <i class="fab fa-twitter-square"></i>
+                            <p>Twiter</p>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mz-5">
+                        <a href="https://facebook.com">
+                            <i class="fab fa-facebook-square"></i>
+                            <p>Facebook</p>
+                        </a>
+                    </li>
+                    <li class="list-inline-item pz-5">
+                        <a href="https://instagram.com">
+                            <i class="fab fa-instagram-square"></i>
+                            <p>Instagram</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--script tags-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="./../js/cart.js"></script>
+</body>
+
+</html>
