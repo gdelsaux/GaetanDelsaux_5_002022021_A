@@ -1,65 +1,52 @@
+//Get elements from the DOM
+const cartItem = document.getElementById('cart--items');
+
 // Get data from api to create products cards
 fetch('http://localhost:3000/api/cameras')
   .then(response => response.json())
   .then(data => {
-    for (let i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++) {
       const injectedHtml = document.getElementById('camera--cards')
       const html = `
         <div class="col-12 col-md-5 col-lg-4 mb-5 card--product">
           <div class="card shadow-lg">
-            <div class="card-body" onclick="product()">
+            <div class="card-body" onclick="product('${data[i]._id}')">
               <img src="${data[i].imageUrl}" alt="${data[i].name} camera" class="card-img-top">
               <h5 class="card-title p-2">${data[i].name}</h5>
               <p class="card-title yo">$${data[i].price}</p>
               <p class="hidden">${data[i].description}</p>
               <p class="hidden">${data[i]._id}</p>
               <p class="hidden">${data[i].lenses}</p>
-              
+              <a href="./html/product.html"
+              class="btn bg-transparent border-dark rounded-pill mt-4 stretched-link">See product
+              details</a>
             </div>
           </div>
         </div>
       `;
       injectedHtml.insertAdjacentHTML('afterbegin', html);
-      //let getDetails = localStorage.getItem("cameraDetails");
-      //let cameraDetails = JSON.parse(getDetails);
+      //console.log(data)
     };
-    console.log(data)
   });
 
-
-//dummy card for testing
-const testCard = `
-<div class="col-12 col-md-5 col-lg-4 mb-5 card--product">
-  <div class="card shadow-lg">
-    <div class="card-body" onclick="product()">
-      <img src="./../images/vcam_1.jpg" alt="camera" class="card-img-top">
-      <p id="yo" class="card-title p-2">nikon<p>
-      <p class="card-title">76</p>
-      <p class="hidden">description</p>
-      <p class="hidden">8708708708</p>
-      <p class="hidden">lense</p>
-      <a href="./html/product.html" class="stretched-link card-title">See details</a>
-    </div>
-  </div>
-</div>
-`;
-
-const test = document.getElementById('test');
-test.innerHTML = testCard;
-
-
-function product() {
-  let cardDetail = {
-    "lense": ["33mm", "50mm", "105mm"],
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "name": "Nikomn",
-    "price": "5000",
-    "photo": "./../images/vcam_1.jpg"
+//Get data from Local Storage
+function getLocalStorage(){
+  let itemsInCart = localStorage.getItem('cart');
+  let numberOfItem = JSON.parse(itemsInCart);
+  console.log(numberOfItem.length)
+  if (numberOfItem.length > 0) {
+    //display the number of item in the cart in the nav bar
+    document.getElementById('basket').classList.add('active');
+    cartItem.innerHTML = numberOfItem.length;
   };
-  console.log(cardDetail)
-  let detailString = JSON.stringify(cardDetail);
-  console.log(detailString)
+};
+getLocalStorage();
 
-  localStorage.setItem("cameraDetails", detailString)
-}
+
+//Send data to Local Storage to be displayed in the product detail page
+function product(ID) {
+  let itemId = JSON.stringify(ID);
+  console.log(itemId);
+  localStorage.setItem("cameraDetails", itemId);
+};
 

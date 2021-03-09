@@ -1,3 +1,7 @@
+* {
+    font-family: 'Lobster', cursive;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -38,7 +42,8 @@ html {
 }
 
 #camera--details {
-    height: 75vh;
+    min-height: 70vh;
+    margin-top: 40px;
     margin-top: 30px;
 }
 
@@ -49,6 +54,11 @@ html {
 
 input:focus {
     outline: none;
+    vertical-align: baseline;
+}
+
+#camera--picture {
+    border: solid 1px black;
 }
 
 .hidden {
@@ -65,4 +75,23 @@ input:focus {
 
 #item--quantity::-webkit-inner-spin-button {
     opacity: 1;
+}
+
+.bg-white {
+    background-color: #ffffff !important;
+}
+
+#empty--basket img {
+    width: 50%;
+    display: inline-block;
+}
+
+#empty--basket button {
+    display: block;
+    color: black;
+}
+
+td {
+    border: solid 1px lightgrey;
+    padding: 10px;
 }

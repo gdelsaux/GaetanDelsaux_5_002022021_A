@@ -14,30 +14,34 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <link rel="stylesheet" href="./../css/all.css">
     <link rel="stylesheet" href="./../css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <!--header-->
-    <header class="bg-light">
+    <header class="bg-light shadow">
         <nav class="col navbar navbar-expand-md navbar-light">
             <a class="navbar-brand ml-lg-5" href="./../index.html">
                 Orinico
             </a>
-            <button class="navbar-toggler mr-lg-5 text-right" type="button" data-toggle="collapse" data-target="#navbarContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler mr-lg-5 text-right" type="button" data-toggle="collapse"
+                data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navbarContent" class="collapse navbar-collapse mr-lg-5 d-md-flex justify-content-md-end">
-                <ul class="navbar-nav text-right">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#products">Our products</a>
+                        <a class="nav-link" href="./../index.html#products">Our products</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="./html/cart.html" class="nav-link">
-                            <i class="fas fa-shopping-cart"></i>
+                    <li id="basket" class="nav-item">
+                        <a href="./cart.html" class="nav-link">
+                            <span class="fas fa-shopping-cart"></span>
+                            <span id="cart--items"></span>
                         </a>
                     </li>
                 </ul>
@@ -46,63 +50,46 @@
     </header>
 
     <!--page core-->
-    <main>
-        <div class="container d-flex flex-row justify-content-around flex-wrap my-5">
+    <main class="bg-white">
+        <div id="basket--content" class="container">
 
             <!--Items from the local storage-->
-            <div class="w-50 px-5">
-                <div class="card shadow mb-5">
-                    <div class="card-body">
-                        <img src="./../images/vcam_1.jpg" alt="Camera number1" class="card-img-top">
-                        <h5 id="camera--name" class="card-title mt-4">carmera name</h5>
-                        <div>
-                            <span class="card-title">Price $</span>
-                            <span id="item--price">3</span>
-                        </div>
-                        <form>
-                            <label class="mr-3" for="quantity">
-                                Quantity
-                            </label>
-                            <input id="item--quantity" type="number" style="width: 40px; border: solid 1px d9d6d0;">
-                            <button class="delete--item rounded-pill">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                        <p>sub-total</p>
-                        <span>$</span><span id="subtotal"></span>
-                    </div>
-                </div>
-            </div>
+            <h1 class="text-center mt-3 pb-4 pt-3">Your Basket</h1>
+            <table id="cart--table" class="w-100 bg-white shadow-lg">
+                <p class="mt-4 text-center">
+                    Basket Total:
+                </p>
+                <p class="text-center">$ <span id="final--amount">dfsg</span></p>
+            </table>
+        </div>
 
-            <!--Order form-->
-            <div class="w-50">
-                <div class="flex flex-col rounded m-4 p-4 pl-5 shadow-lg align-content-center">
-                    <p class="py-2">
-                        Your details
-                    </p>
-                    <form id="order--form">
-                        <input class="w-75 px-2 p-2 my-2" type="text" name="input--field" placeholder="First Name" id="firstName"
-                            required />
-                        <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="Last Name" id="lastName"
-                            required />
-                        <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="Address" id="address" required />
-                        <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="City" id="city" required />
-                        <input class="w-75 px-2 p-1 my-2" type="email" name="input--field" placeholder="E-Mail" id="email" pattern=".+@.+\..+" required />
-                    </form>
-                    <button id="submit--form" class="w-75 px-2 p-1 mt-2 rounded-pill" type="submit">
+        <!--Order form-->
+        <div class="container text-center mt-5 mb-5 pb-5 pt-5">
+            <div class="flex flex-col  rounded m-4 p-4 pl-5 shadow align-content-center border">
+                <h2 class="py-2">
+                    Your Details
+                </h2>
+                <form id="order--form">
+                    <input class="w-75 px-2 p-2 my-2" type="text" name="input--field" placeholder="First Name"
+                        id="firstName" required />
+                    <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="Last Name"
+                        id="lastName" required />
+                    <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="Address" id="address"
+                        required />
+                    <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="City" id="city"
+                        required />
+                    <input class="w-75 px-2 p-1 my-2" type="email" name="input--field" placeholder="E-Mail" id="email"
+                        pattern=".+@.+\..+" required />
+                    <button id="submit--form" class="w-50 px-2 p-1 mt-2 rounded-pill text-center" type="submit">
                         Order
                     </button>
-                    <p class="mt-4">
-                        Basket Total:
-                    </p>
-                    <span>$</span><span id="final--amount"></span>
-                </div>
+                </form>
             </div>
         </div>
     </main>
 
     <!--footer-->
-    <div class="bg-light">
+    <div class="bg-light border">
         <div class="container">
             <div class="row py-3">
                 <ul class="col list-inline text-center align-middle">
