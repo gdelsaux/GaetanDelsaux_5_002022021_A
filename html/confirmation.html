@@ -20,9 +20,9 @@
 
 <body>
      <!--header-->
-     <header class="bg-light">
+     <header class="bg-light shadow">
         <nav class="col navbar navbar-expand-md navbar-light">
-            <a class="navbar-brand ml-lg-5" href="./../index.html">
+            <a class="navbar-brand ml-lg-5" id="nav" href="./../index.html">
                 Orinico
             </a>
             <button class="navbar-toggler mr-lg-5 text-right" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -56,7 +56,7 @@
                     <h1 class="m-5">Thank you for your order!</h1>
                     <h2 class="m-5">We will shortly send your an email with your delivery tracking number</h2>
                     <h3 class="m-5">Your order number is</h3>
-                    <p>00000000000000000000</p>
+                    <p id="order--id"></p>
                 </div>
             </div>
         </div>
@@ -109,6 +109,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="./../js/id.js"></script>
 </body>
 
 </html>

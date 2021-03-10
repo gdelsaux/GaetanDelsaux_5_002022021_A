@@ -22,7 +22,7 @@
     <!--header-->
     <header class="bg-light shadow">
         <nav class="col navbar navbar-expand-md navbar-light">
-            <a class="navbar-brand ml-lg-5" href="./../index.html">
+            <a class="navbar-brand ml-lg-5" id="nav" href="./../index.html">
                 Orinico
             </a>
             <button class="navbar-toggler mr-lg-5 text-right" type="button" data-toggle="collapse"
@@ -56,20 +56,20 @@
             <!--Items from the local storage-->
             <h1 class="text-center mt-3 pb-4 pt-3">Your Basket</h1>
             <table id="cart--table" class="w-100 bg-white shadow-lg">
-                <p class="mt-4 text-center">
-                    Basket Total:
-                </p>
-                <p class="text-center">$ <span id="final--amount">dfsg</span></p>
             </table>
+            <div id="basket--total" class="text-center mt-5">
+                <p>Basket Total</p>
+                <p>
+                    <span id="final--amount"></span>
+                </p>
+            </div>
         </div>
 
         <!--Order form-->
         <div class="container text-center mt-5 mb-5 pb-5 pt-5">
             <div class="flex flex-col  rounded m-4 p-4 pl-5 shadow align-content-center border">
-                <h2 class="py-2">
-                    Your Details
-                </h2>
-                <form id="order--form">
+                <h3>Your Details</h3>
+                <form id="order--form" action="./confirmation.html">
                     <input class="w-75 px-2 p-2 my-2" type="text" name="input--field" placeholder="First Name"
                         id="firstName" required />
                     <input class="w-75 px-2 p-1 my-2" type="text" name="input--field" placeholder="Last Name"
@@ -80,7 +80,8 @@
                         required />
                     <input class="w-75 px-2 p-1 my-2" type="email" name="input--field" placeholder="E-Mail" id="email"
                         pattern=".+@.+\..+" required />
-                    <button id="submit--form" class="w-50 px-2 p-1 mt-2 rounded-pill text-center" type="submit">
+                    <p id="error" class="hidden text-danger">Please fill in your details</p>
+                    <button type="submit" id="submit--form" class="w-50 px-2 p-1 mt-2 rounded-pill text-center">
                         Order
                     </button>
                 </form>

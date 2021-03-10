@@ -13,7 +13,7 @@ fetch('http://localhost:3000/api/cameras')
             <div class="card-body" onclick="product('${data[i]._id}')">
               <img src="${data[i].imageUrl}" alt="${data[i].name} camera" class="card-img-top">
               <h5 class="card-title p-2">${data[i].name}</h5>
-              <p class="card-title yo">$${data[i].price}</p>
+              <p class="card-title yo">${data[i].price}</p>
               <p class="hidden">${data[i].description}</p>
               <p class="hidden">${data[i]._id}</p>
               <p class="hidden">${data[i].lenses}</p>

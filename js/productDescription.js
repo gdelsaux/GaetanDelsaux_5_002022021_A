@@ -25,6 +25,11 @@ fetch('http://localhost:3000/api/cameras')
             cameraName.textContent = element.name;
             cameraDescription.textContent = element.description;
             cameraPrice.textContent = element.price;
+            //new Intl.NumberFormat('en-US', {
+                //style: 'currency',
+                //currency: 'USD',
+                //minimumFractionDigits: 2,  
+            //}).format(element.price);
             cameraPicture.setAttribute('src', element.imageUrl);
             element.lenses.forEach(lens => {
                 const options = `<option name="${lens}">${lens}</option>`;

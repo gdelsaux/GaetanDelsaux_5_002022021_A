@@ -6,6 +6,10 @@ html {
     scroll-behavior: smooth;
 }
 
+nav, #nav {
+    font-size: 30px;
+}
+
 #presentation {
     background-image: url(./../images/photo-1516724562728-afc824a36e84.jpeg);
     background-repeat: no-repeat;
@@ -94,4 +98,8 @@ input:focus {
 td {
     border: solid 1px lightgrey;
     padding: 10px;
+}
+
+#confirmation {
+    min-height: 80vh;
 }
