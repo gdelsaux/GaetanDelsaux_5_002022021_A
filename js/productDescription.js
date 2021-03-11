@@ -26,9 +26,9 @@ fetch('http://localhost:3000/api/cameras')
             cameraDescription.textContent = element.description;
             cameraPrice.textContent = element.price;
             //new Intl.NumberFormat('en-US', {
-                //style: 'currency',
-                //currency: 'USD',
-                //minimumFractionDigits: 2,  
+            //style: 'currency',
+            //currency: 'USD',
+            //minimumFractionDigits: 2,  
             //}).format(element.price);
             cameraPicture.setAttribute('src', element.imageUrl);
             element.lenses.forEach(lens => {
@@ -42,9 +42,17 @@ fetch('http://localhost:3000/api/cameras')
 function getLocalStorage() {
     let itemsInCart = localStorage.getItem('cart');
     let cart = JSON.parse(itemsInCart);
+    let quantityArray = [];
     if (itemsInCart) {
-        cartItem.innerHTML = cart.length;
-        document.getElementById('basket').classList.add("active")
+        cart.forEach(item => {
+            item.quantity = parseInt(item.quantity)
+            quantityArray.push(item.quantity);
+            let quantityArrayReduced = quantityArray.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue;
+            });
+            cartItem.innerHTML = quantityArrayReduced;
+            document.getElementById('basket').classList.add("active");
+        });        
     };
 };
 getLocalStorage();
@@ -100,6 +108,10 @@ addToCart.addEventListener('click', () => {
         } else {
             cartArray.push(cardDetail);
             localStorage.setItem('cart', JSON.stringify(cartArray));
+            document.getElementById('cart--message').innerHTML = 'Item added to cart';
+            setTimeout(function () {
+                document.getElementById('cart--message').innerHTML = '';
+            }, 2000);
             getLocalStorage();
         };
     };

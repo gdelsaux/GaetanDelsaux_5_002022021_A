@@ -8,6 +8,7 @@ const finalAmount = document.getElementById('final--amount');
 function getLocalStorage() {
     let itemsInCart = localStorage.getItem('cart');
     let cart = JSON.parse(itemsInCart);
+    let quantityArray = [];
     if (itemsInCart) {
         cartItem.innerHTML = cart.length;
         document.getElementById('basket').setAttribute('class', 'active')
@@ -24,8 +25,9 @@ function getLocalStorage() {
             let deleteItem = document.createElement('span');
 
             //insert data from local storage into each cell created
+            infoCell.classList.add('text-left')
             name.innerHTML = element.camera;
-            name.classList.add('ml-3');
+            name.classList.add('ml-0', 'text-nowrap');
 
             img.setAttribute('src', element.img);
             img.style.border = 'solid 1px black';
@@ -35,19 +37,28 @@ function getLocalStorage() {
 
             quantityChange.innerHTML = `<input type="number" class="mt-3 rounded-pill text-center item--quantity" placeholder="1" value="${element.quantity}" min="1"  onclick="updateCartQuantity('${element.id}', '${element.lens}')">`;
             quantity.setAttribute('class', 'text-center');
-            deleteItem.innerHTML = `<button onclick="removeItemFromCart('${element.id}', '${element.lens}')" class="rounded-pill ml-3"><i class="far fa-trash-alt"></i></button>`;
+            deleteItem.innerHTML = `<button onclick="removeItemFromCart('${element.id}', '${element.lens}')" class="rounded-pill ml-sm-2"><i class="far fa-trash-alt"></i></button>`;
             quantity.append(quantityChange, deleteItem);
 
-            price.innerHTML = finalAmount.innerText = new Intl.NumberFormat('en-US', {
+            price.innerHTML = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD',
-                minimumFractionDigits: 2,
+                minimumFractionDigits: 0,
             }).format(element.price);
 
             lens.innerHTML = element.lens;
 
             tableRow.append(infoCell, price, lens, quantity);
             cartTable.appendChild(tableRow);
+
+            //Display the amount of items in the cart
+            element.quantity = parseInt(element.quantity)
+            quantityArray.push(element.quantity);
+            let quantityArrayReduced = quantityArray.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue;
+            });
+            cartItem.innerHTML = quantityArrayReduced;
+            document.getElementById('basket').classList.add("active");
         });
     } else if (itemsInCart === null) {
         emptyBasket();
@@ -70,6 +81,18 @@ function removeItemFromCart(id, lens) {
         localStorage.removeItem('cart');
         emptyBasket();
         cartItem.remove();
+    };
+    if (itemsInCart) {
+        let quantityArray = [];
+        cart.forEach(item => {
+            item.quantity = parseInt(item.quantity)
+            quantityArray.push(item.quantity);
+            let quantityArrayReduced = quantityArray.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue;
+            });
+            cartItem.innerHTML = quantityArrayReduced;
+            document.getElementById('basket').classList.add("active");
+        });
     };
     reduce();
 };
@@ -107,30 +130,41 @@ function updateCartQuantity(id, lens) {
     cart.splice(searchCartIndex, 1, cart[searchCartIndex]);
     localStorage.setItem('cart', JSON.stringify(cart));
     reduce();
+    if (itemsInCart) {
+        let quantityArray = [];
+        cart.forEach(item => {
+            item.quantity = parseInt(item.quantity)
+            quantityArray.push(item.quantity);
+            let quantityArrayReduced = quantityArray.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue;
+            });
+            cartItem.innerHTML = quantityArrayReduced;
+            document.getElementById('basket').classList.add("active");
+        });
+    };
 };
 
 //Function to reduce the quantityArray and priceArray
 function reduce() {
     let itemsInCart = localStorage.getItem('cart');
     let cart = JSON.parse(itemsInCart);
-    let quantityArray = [];
     let priceArray = [];
-    cart.forEach(item => {
-        quantityArray.push(parseInt(item.quantity))
-        priceArray.push(parseInt(item.price))
-    });
-    let quantityArrayReduced = quantityArray.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue;
-    });
-    let priceArrayReduced = priceArray.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue;
-    });
-    let basketAmount = quantityArrayReduced * priceArrayReduced;
-    finalAmount.innerText = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-    }).format(basketAmount);;
+    cart.forEach(element => {
+        let price = element.quantity * element.price;
+        console.log(price)
+        priceArray.push(price)
+        console.log(priceArray)
+        let priceArrayReduced = priceArray.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue;
+        });
+        console.log(priceArrayReduced);
+        finalAmount.innerText = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 0,
+        }).format(priceArrayReduced);
+    })
+
 };
 
 //Form validation

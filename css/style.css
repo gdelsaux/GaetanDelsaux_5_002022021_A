@@ -14,7 +14,8 @@ nav, #nav {
     background-image: url(./../images/photo-1516724562728-afc824a36e84.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    height: 110vh;
+
 }
 
 #camera--cards .card {
@@ -42,7 +43,7 @@ nav, #nav {
 #confirmation--box {
     border: solid 1px lightgray;
     border-radius: 40px;
-    height: 500px;
+    min-height: 500px;
 }
 
 #camera--details {

@@ -30,14 +30,20 @@ fetch('http://localhost:3000/api/cameras')
   });
 
 //Get data from Local Storage
-function getLocalStorage(){
+function getLocalStorage() {
   let itemsInCart = localStorage.getItem('cart');
-  let numberOfItem = JSON.parse(itemsInCart);
-  console.log(numberOfItem.length)
-  if (numberOfItem.length > 0) {
-    //display the number of item in the cart in the nav bar
-    document.getElementById('basket').classList.add('active');
-    cartItem.innerHTML = numberOfItem.length;
+  let cart = JSON.parse(itemsInCart);
+  let quantityArray = [];
+  if (itemsInCart) {
+    cart.forEach(item => {
+      item.quantity = parseInt(item.quantity)
+      quantityArray.push(item.quantity);
+      let quantityArrayReduced = quantityArray.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue;
+      });
+      cartItem.innerHTML = quantityArrayReduced;
+      document.getElementById('basket').classList.add("active");
+    });
   };
 };
 getLocalStorage();
@@ -49,4 +55,3 @@ function product(ID) {
   console.log(itemId);
   localStorage.setItem("cameraDetails", itemId);
 };
-
